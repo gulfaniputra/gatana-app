@@ -78,10 +78,16 @@ function Search() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <p className="search-results">
-        <strong>4</strong> results found
-      </p>
+      <NumResult />
     </div>
+  );
+}
+
+function NumResult() {
+  return (
+    <p className="search-results">
+      <strong>4</strong> results found
+    </p>
   );
 }
 
