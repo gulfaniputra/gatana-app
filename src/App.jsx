@@ -41,7 +41,39 @@ const animesData = [
 ];
 
 export default function App() {
+  return (
+    <>
+      <NavBar />
+      <Main />
+    </>
+  );
+}
+
+function NavBar() {
   const [query, setQuery] = useState("");
+
+  return (
+    <nav className="nav-bar">
+      <div className="logo">
+        <h1>Gatana</h1>
+      </div>
+      <div className="search-container">
+        <input
+          className="search"
+          type="text"
+          placeholder="Search Anime..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <p className="search-results">
+          <strong>4</strong> results found
+        </p>
+      </div>
+    </nav>
+  );
+}
+
+function Main() {
   const [animes, setAnimes] = useState(animesData);
   const [selectedAnime, setSelectedAnime] = useState(animes[0]);
   const [isOpen1, setIsOpen1] = useState(true);
@@ -53,79 +85,59 @@ export default function App() {
   }
 
   return (
-    <>
-      <nav className="nav-bar">
-        <div className="logo">
-          <h1>Gatana</h1>
-        </div>
-        <div className="search-container">
-          <input
-            className="search"
-            type="text"
-            placeholder="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <p className="search-results">
-            Found <strong>4</strong> results
-          </p>
-        </div>
-      </nav>
-
-      <main className="main">
-        <div className="box">
-          <button
-            className="btn-toggle"
-            onClick={() => setIsOpen1((open) => !open)}>
-            {isOpen1 ? "–" : "+"}
-          </button>
-          {isOpen1 && (
-            <ul className="list list-anime">
-              {animes?.map((anime) => (
-                <li
-                  key={anime.mal_id}
-                  onClick={() => handleSelectedAnime(anime.mal_id)}>
-                  <img src={anime.image} alt={`${anime.title} cover`} />
-                  <h3>{anime.title}</h3>
-                  <div>
-                    <p>
-                      <span>{anime.year}</span>
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div className="box">
-          <button
-            className="btn-toggle"
-            onClick={() => setIsOpen2((open) => !open)}>
-            {isOpen2 ? "–" : "+"}
-          </button>
-          {isOpen2 && (
-            <div className="details">
-              <header>
-                <img
-                  src={selectedAnime.image}
-                  alt={`${selectedAnime.title} cover`}
-                />
-                <div className="details-overview">
-                  <h2>{selectedAnime.title}</h2>
+    <main className="main">
+      <div className="box">
+        <button
+          className="btn-toggle"
+          onClick={() => setIsOpen1((open) => !open)}>
+          {isOpen1 ? "–" : "+"}
+        </button>
+        {isOpen1 && (
+          <ul className="list list-anime">
+            {animes?.map((anime) => (
+              <li
+                key={anime.mal_id}
+                onClick={() => handleSelectedAnime(anime.mal_id)}>
+                <img src={anime.image} alt={`${anime.title} cover`} />
+                <h3>{anime.title}</h3>
+                <div>
                   <p>
-                    {selectedAnime.year} &bull; {selectedAnime.score}
+                    <span>{anime.year}</span>
                   </p>
                 </div>
-              </header>
-              <section>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className="box">
+        <button
+          className="btn-toggle"
+          onClick={() => setIsOpen2((open) => !open)}>
+          {isOpen2 ? "–" : "+"}
+        </button>
+        {isOpen2 && (
+          <div className="details">
+            <header>
+              <img
+                src={selectedAnime.image}
+                alt={`${selectedAnime.title} cover`}
+              />
+              <div className="details-overview">
+                <h2>{selectedAnime.title}</h2>
                 <p>
-                  <em>{selectedAnime.synopsis}</em>
+                  {selectedAnime.year} &bull; {selectedAnime.score}
                 </p>
-              </section>
-            </div>
-          )}
-        </div>
-      </main>
-    </>
+              </div>
+            </header>
+            <section>
+              <p>
+                <em>{selectedAnime.synopsis}</em>
+              </p>
+            </section>
+          </div>
+        )}
+      </div>
+    </main>
   );
 }

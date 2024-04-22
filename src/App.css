@@ -95,8 +95,6 @@ body {
   font-size: 1.5rem;
 }
 
-/* Main */
-
 .main {
   margin-top: 2.4rem;
   max-height: calc(100vh - 12rem - 3 * 5rem);
