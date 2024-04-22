@@ -50,26 +50,38 @@ export default function App() {
 }
 
 function NavBar() {
+  return (
+    <nav className="nav-bar">
+      <Logo />
+      <Search />
+    </nav>
+  );
+}
+
+function Logo() {
+  return (
+    <div className="logo">
+      <h1>Gatana</h1>
+    </div>
+  );
+}
+
+function Search() {
   const [query, setQuery] = useState("");
 
   return (
-    <nav className="nav-bar">
-      <div className="logo">
-        <h1>Gatana</h1>
-      </div>
-      <div className="search-container">
-        <input
-          className="search"
-          type="text"
-          placeholder="Search Anime..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <p className="search-results">
-          <strong>4</strong> results found
-        </p>
-      </div>
-    </nav>
+    <div className="search-container">
+      <input
+        className="search"
+        type="text"
+        placeholder="Search Anime..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <p className="search-results">
+        <strong>4</strong> results found
+      </p>
+    </div>
   );
 }
 
