@@ -45,17 +45,17 @@ export default function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar animes={animes} />
       <Main animes={animes} />
     </>
   );
 }
 
-function NavBar() {
+function NavBar({ animes }) {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search />
+      <Search animes={animes} />
     </nav>
   );
 }
@@ -68,7 +68,7 @@ function Logo() {
   );
 }
 
-function Search() {
+function Search({ animes }) {
   const [query, setQuery] = useState("");
 
   return (
@@ -80,15 +80,15 @@ function Search() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <NumResult />
+      <NumResult animes={animes} />
     </div>
   );
 }
 
-function NumResult() {
+function NumResult({ animes }) {
   return (
     <p className="search-results">
-      <strong>4</strong> results found
+      <strong>{animes.length}</strong> results found
     </p>
   );
 }
